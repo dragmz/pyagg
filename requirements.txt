@@ -1,0 +1,5 @@
+pyopencl
+numpy
+py-algorand-sdk
+pytest
+setuptools
