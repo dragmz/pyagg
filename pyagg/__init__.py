@@ -359,11 +359,15 @@ def mnemonic_to_json(mnemonic: str):
 
 
 def read_kernel_source_from_path(kernel_path: str) -> str:
-    import importlib.resources
+    if kernel_path:
+        with open(kernel_path, mode="r") as f:
+            return f.read()
+    else:
+        import importlib.resources
 
-    kernel_file = importlib.resources.files("pyagg") / "kernel.cl"
-    with kernel_file.open(mode="r") as f:
-        return f.read()
+        kernel_file = importlib.resources.files("pyagg") / "kernel.cl"
+        with kernel_file.open(mode="r") as f:
+            return f.read()
 
 
 def build_program_from_source(ctx: cl.Context, source: str):
@@ -437,7 +441,7 @@ def pyagg_cli():
     parser.add_argument("--prefix", type=str, nargs="+", action="append")
     parser.add_argument("--benchmark", action="store_true")
     parser.add_argument("--batch", type=int)
-    parser.add_argument("--kernel", type=str, default="kernel.cl")
+    parser.add_argument("--kernel", type=str, default=None)
     parser.add_argument("--count", type=int, default=1)
     parser.add_argument("--verbose", action="store_true")
 
