@@ -1,0 +1,18 @@
+name: Release kernel.cl
+
+on: workflow_dispatch
+
+jobs:
+  release-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          tag: kernal
+          artifacts: "pyagg/kernel.cl"
+          prerelease: true
