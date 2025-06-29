@@ -13,6 +13,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          tag: kernal
+          tag: kernel
           artifacts: "pyagg/kernel.cl"
           prerelease: true
